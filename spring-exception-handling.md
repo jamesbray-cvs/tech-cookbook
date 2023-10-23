@@ -49,6 +49,36 @@ public class PatientExceptionHandler extends ResponseEntityExceptionHandler {
 }
 ```
 
+Here is a snippet from a REST controller where an exception is thrown if the new patient creation fails.
+
+```java
+
+    @PostMapping(consumes = APPLICATION_JSON_VALUE)
+    @Operation(summary = "Creates a patient", method = "POST", tags = "Patient CRUD")
+    @ApiResponse(
+            responseCode = "201",
+            description = "Patient successfully created",
+            headers = @Header(
+                    name = "Location",
+                    description = "Contains path which can be used to retrieve saved patient",
+                    required = true,
+                    schema = @Schema(type = "string"))
+    )
+    @ApiResponse(
+            responseCode = "400",
+            description = "Passed patient data is invalid"
+    )
+    public ResponseEntity<Void> createPatient(@RequestBody @Valid PatientModificationRequest request) {
+        NewPatient newPatient = mapper.toNewPatient(request);
+        Patient savedPatient = patientService.create(newPatient);
+        if(null == savedPatient) {
+            throw new PatientEventException();
+        }
+        return created(toLocationUri(savedPatient.getId())).build();
+    }
+
+```
+
 ### Testing
 
 Handling exceptions via a controller advice can be tested just like any other exception handing pattern.
