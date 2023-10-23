@@ -30,3 +30,7 @@ This is the result of an effort to add SSO functionality to the CVS Accelerators
 - [PKCE Support for Secret Clients with Spring Security](https://www.baeldung.com/spring-security-pkce-secret-clients)
 - [Spring Security: Upgrading the Deprecated WebSecurityConfigurerAdapter](https://www.baeldung.com/spring-deprecated-websecurityconfigureradapter)
 - [Original Source Code in CVS GitLab](https://gitw.cvshealth.com/PBM/XP_Labs/pbm-security-library.git)
+- [Azure-Samples/ms-identity-javascript-angular-spa](https://github.com/Azure-Samples/ms-identity-javascript-angular-spa.git)
+- [Azure-Samples/ms-identity-java-webapp](https://github.com/Azure-Samples/ms-identity-java-webapp.git)
+
+curl http://localhost:8080/auth/token?code=abcd&client_id=abcd&redirect_uri=http%3A%2F%2Flocalhost%3A4200&code_verifier=def
